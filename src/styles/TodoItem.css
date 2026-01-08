@@ -45,3 +45,14 @@ ul{
     color: red;
 
 }
+
+.Icon-check{
+    padding: 23px;
+}
+
+.Icon-delete{
+    padding: 23px;
+}
+.Icon-check:hover{
+    color:#4caf50;
+}
