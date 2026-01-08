@@ -1,0 +1,19 @@
+.createTodoButton {
+    background-color: #4CAF50;
+    font-size: medium;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: gray;
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.createTodoButton:hover{
+    background-color: #45a049;
+}
+
+.createTodoButton:active{
+    background-color: #3e8e41;
+}
