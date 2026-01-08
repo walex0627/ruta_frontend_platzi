@@ -1,9 +1,9 @@
 import '../styles/TodoCount.css'
 
-function TodoCount({total, completed}) {
+function TodoCount({total, completed, message}) {
   return (
     <h1 className='TodoCounter'>Todo Count
-      <p>has completado <span>{completed}</span> de <span>{total}</span> tareas</p>
+      {total === completed && total > 0 ? (<p>{message}</p>): (<p>has completado <span>{completed}</span> de <span>{total}</span> tareas</p>)}
     </h1>
   )
 }

@@ -15,12 +15,13 @@ const defaultTodos=[
 
 ]
 
+const msgCongratulations = 'Felicitaciones completaste todas las tareas'
+
 function App() {
   const [searchValue, setSearchValue] = React.useState('');
   console.log('los usuarios buscan tareas de ' + searchValue);
   
   const [todos, setTodos] = React.useState(defaultTodos);
-  console.log(todos);
   const completedTodos = todos.filter(todos => !!todos.completed == true).length
   const totalTodos = todos.length
 
@@ -30,10 +31,23 @@ function App() {
   return todoText.includes(searchText)
   })
 
+  const completeTodo = (text)=>{
+    const newTodos = [...todos]
+    const todoIndex = newTodos.findIndex(todo => todo.text == text)  
+    newTodos[todoIndex].completed = true
+    setTodos(newTodos)
+  }
 
+    const deleteTodo = (text)=>{
+    const newTodos = [...todos]
+    const todoIndex = newTodos.findIndex(todo => todo.text == text)
+    newTodos.splice(todoIndex, 1);
+    setTodos(newTodos)
+  }
+  
   return (
     <>
-      <TodoCount total={totalTodos} completed={completedTodos} />
+      <TodoCount total={totalTodos} completed={completedTodos} message={msgCongratulations} />
       <TodoSearch
       searchValue={searchValue}
       setSearchValue={setSearchValue}
@@ -44,7 +58,10 @@ function App() {
           <TodoItem 
           key={todo.text} 
           text={todo.text} 
-          completed={todo.completed}/>
+          completed={todo.completed}
+          onComplete={() =>completeTodo(todo.text)}
+          onDelete={() => deleteTodo(todo.text)}/>
+          
         ))}
       </TodoList>
 
