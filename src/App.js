@@ -20,23 +20,35 @@ import { DefaultContext } from 'react-icons';
 
 const msgCongratulations = 'Felicitaciones completaste todas las tareas'
 
-function App() {
-  const localStorageTodos = localStorage.getItem('Todos_v1')
-  
-  let parsedTodos;
+function useLocalStorage(itemName, initialValue) {
 
-  if (!localStorageTodos) {
-  localStorage.setItem('Todos_v1', JSON.stringify([]))
-  parsedTodos=[]
+  const localStorageItem = localStorage.getItem(itemName)
+  
+  let parsedItem;
+  
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialValue))
+    parsedItem = initialValue
   }else{
-      parsedTodos = JSON.parse(localStorageTodos)
+    parsedItem = JSON.parse(localStorageItem)
   }
   
+  const [ item, setItem ] = React.useState(parsedItem)
 
+    const saveItem = (newItem) =>{
+    localStorage.setItem(itemName, JSON.stringify(newItem));
+    setItem(newItem)
+  }
+
+  return [item, saveItem]
+}
+
+
+function App() {
   const [searchValue, setSearchValue] = React.useState('');
   console.log('los usuarios buscan tareas de ' + searchValue);
   
-  const [todos, setTodos] = React.useState(parsedTodos);
+  const [todos, saveTodos] = useLocalStorage('Todos_v1', []);
   const completedTodos = todos.filter(todos => !!todos.completed == true).length
   const totalTodos = todos.length
 
@@ -46,10 +58,7 @@ function App() {
   return todoText.includes(searchText)
   })
 
-  const saveTodos = (newTodos) =>{
-    localStorage.setItem('Todos_v1', JSON.stringify(newTodos));
-    setTodos(newTodos)
-  }
+
   const completeTodo = (text)=>{
     const newTodos = [...todos]
     const todoIndex = newTodos.findIndex(todo => todo.text == text)  
