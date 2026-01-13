@@ -4,7 +4,8 @@ import {TodoSearch} from './components/TodoSearch';
 import {TodoList} from './components/TodoList';
 import {TodoItem} from './components/TodoItem';
 import {CreateTodoButton} from './components/CreateTodoButton';
-import { DefaultContext } from 'react-icons';
+import {useLocalStorage} from './hooks/useLocalStorage.hook';
+
 
 // const defaultTodos=[
 //   {text: 'Cortar cebolla', completed: false},
@@ -20,28 +21,6 @@ import { DefaultContext } from 'react-icons';
 
 const msgCongratulations = 'Felicitaciones completaste todas las tareas'
 
-function useLocalStorage(itemName, initialValue) {
-
-  const localStorageItem = localStorage.getItem(itemName)
-  
-  let parsedItem;
-  
-  if (!localStorageItem) {
-    localStorage.setItem(itemName, JSON.stringify(initialValue))
-    parsedItem = initialValue
-  }else{
-    parsedItem = JSON.parse(localStorageItem)
-  }
-  
-  const [ item, setItem ] = React.useState(parsedItem)
-
-    const saveItem = (newItem) =>{
-    localStorage.setItem(itemName, JSON.stringify(newItem));
-    setItem(newItem)
-  }
-
-  return [item, saveItem]
-}
 
 
 function App() {
@@ -49,7 +28,7 @@ function App() {
   console.log('los usuarios buscan tareas de ' + searchValue);
   
   const [todos, saveTodos] = useLocalStorage('Todos_v1', []);
-  const completedTodos = todos.filter(todos => !!todos.completed == true).length
+  const completedTodos = todos.filter(todos => !!todos.completed === true).length
   const totalTodos = todos.length
 
   const searchedTodos = todos.filter((todo) => {
@@ -61,14 +40,14 @@ function App() {
 
   const completeTodo = (text)=>{
     const newTodos = [...todos]
-    const todoIndex = newTodos.findIndex(todo => todo.text == text)  
+    const todoIndex = newTodos.findIndex(todo => todo.text === text)  
     newTodos[todoIndex].completed = true
     saveTodos(newTodos)
   }
 
     const deleteTodo = (text)=>{
     const newTodos = [...todos]
-    const todoIndex = newTodos.findIndex(todo => todo.text == text)
+    const todoIndex = newTodos.findIndex(todo => todo.text === text)
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos)
   }
