@@ -16,6 +16,10 @@ function TodoUI({
     loading,
     error
 }) {
+
+    // console.log(todos);
+    
+
     return (
         <>
             <TodoCount total={totalTodos} completed={completedTodos} message={msgCongratulations} />

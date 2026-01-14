@@ -11,7 +11,11 @@ function App() {
   const [searchValue, setSearchValue] = React.useState('');
   console.log('los usuarios buscan tareas de ' + searchValue);
   
-  const {item:todos, saveItem:saveTodos, loading, error} = useLocalStorage('Todos_v1', []);
+  const {
+    item:todos, 
+    saveItem:saveTodos, 
+    loading, 
+    error} = useLocalStorage('Todos_v1', []);
   const completedTodos = todos.filter(todos => !!todos.completed === true).length
   const totalTodos = todos.length
 
