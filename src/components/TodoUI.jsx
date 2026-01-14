@@ -12,7 +12,9 @@ function TodoUI({
     msgCongratulations,
     searchedTodos,
     completeTodo,
-    deleteTodo
+    deleteTodo,
+    loading,
+    error
 }) {
     return (
         <>
@@ -23,6 +25,10 @@ function TodoUI({
             />
 
             <TodoList>
+            {loading && <p>Cargando...</p>}
+            {error && <p>Hubo un error</p>}
+            {(!loading && searchedTodos.length === 0) && <p>Crea tu primer tarea</p>}
+
                 {searchedTodos.map(todo => (
                     <TodoItem
                         key={todo.text}

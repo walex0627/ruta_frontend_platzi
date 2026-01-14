@@ -11,11 +11,11 @@ function App() {
   const [searchValue, setSearchValue] = React.useState('');
   console.log('los usuarios buscan tareas de ' + searchValue);
   
-  const [todos, saveTodos] = useLocalStorage('Todos_v1', []);
+  const {item:todos, saveItem:saveTodos, loading, error} = useLocalStorage('Todos_v1', []);
   const completedTodos = todos.filter(todos => !!todos.completed === true).length
   const totalTodos = todos.length
 
-  console.log('log 1')
+  // console.log('log 1')
   // React.useEffect(()=>{
   //   console.log('looooooooog 2')
   // })
@@ -24,11 +24,10 @@ function App() {
   //   console.log('looooooooog 2')
   // },[])
 
-  React.useEffect(()=>{
-    console.log('looooooooog 2')
-  },[totalTodos])
-
-  console.log('log 3')
+  // React.useEffect(()=>{
+  //   console.log('looooooooog 2')
+  // },[totalTodos])
+  // console.log('log 3')
   const searchedTodos = todos.filter((todo) => {
     const todoText = todo.text.toLocaleLowerCase();
     const searchText = searchValue.toLocaleLowerCase();
@@ -52,6 +51,8 @@ function App() {
   
   return (
       <TodoUI
+      loading = {loading}
+      error = {error}
       completedTodos= {completedTodos}
       totalTodos= {totalTodos}
       searchValue= {searchValue}
