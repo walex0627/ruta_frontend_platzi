@@ -3,6 +3,9 @@ import {TodoSearch} from './TodoSearch';
 import {TodoList} from './TodoList';
 import {TodoItem} from './TodoItem';
 import {CreateTodoButton} from './CreateTodoButton';
+import {TodoLoading} from './TodoLoading';
+import {TodoError} from './TodoError';
+import {EmptyTodo} from './TodoEmpty';
 
 function TodoUI({
     completedTodos,
@@ -29,9 +32,17 @@ function TodoUI({
             />
 
             <TodoList>
-            {loading && <p>Cargando...</p>}
-            {error && <p>Hubo un error</p>}
-            {(!loading && searchedTodos.length === 0) && <p>Crea tu primer tarea</p>}
+            {loading && 
+            (
+                <>
+                <TodoLoading/>
+                <TodoLoading/>
+                <TodoLoading/>
+                </>
+            )
+            }
+            {error && <TodoError/>}
+            {(!loading && searchedTodos.length === 0) && <EmptyTodo/>}
 
                 {searchedTodos.map(todo => (
                     <TodoItem
