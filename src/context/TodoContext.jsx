@@ -5,6 +5,7 @@ const TodoContext = React.createContext()
 function TodoProvider({ children }) {
     const msgCongratulations = 'Felicitaciones completaste todas las tareas'
     const [searchValue, setSearchValue] = React.useState('');
+    const [openModal, setOpenModal] = React.useState(true);
 
     const {
         item: todos,
@@ -59,7 +60,9 @@ function TodoProvider({ children }) {
             completeTodo,
             deleteTodo,
             loading,
-            error
+            error,
+            openModal,
+            setOpenModal
         }}>
             {children}
         </TodoContext.Provider>
