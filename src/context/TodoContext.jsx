@@ -2,10 +2,9 @@ import React from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage.hook';
 const TodoContext = React.createContext()
 
-function TodoProvider({children}) {
+function TodoProvider({ children }) {
     const msgCongratulations = 'Felicitaciones completaste todas las tareas'
     const [searchValue, setSearchValue] = React.useState('');
-    console.log('los usuarios buscan tareas de ' + searchValue);
 
     const {
         item: todos,
@@ -48,23 +47,23 @@ function TodoProvider({children}) {
         newTodos.splice(todoIndex, 1);
         saveTodos(newTodos)
     }
- return (
+    return (
 
-    <TodoContext.Provider value={{
-    completedTodos,
-    totalTodos,
-    searchValue,
-    setSearchValue,
-    msgCongratulations,
-    searchedTodos,
-    completeTodo,
-    deleteTodo,
-    loading,
-    error
-    }}>
-        {children}
-    </TodoContext.Provider>
-)
+        <TodoContext.Provider value={{
+            completedTodos,
+            totalTodos,
+            searchValue,
+            setSearchValue,
+            msgCongratulations,
+            searchedTodos,
+            completeTodo,
+            deleteTodo,
+            loading,
+            error
+        }}>
+            {children}
+        </TodoContext.Provider>
+    )
 }
 
 
