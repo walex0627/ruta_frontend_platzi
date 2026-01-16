@@ -8,6 +8,7 @@
     cursor: pointer;
     color: white;
     margin-bottom: 10px;
+    z-index: 1;
 }
 
 .createTodoButton:hover{

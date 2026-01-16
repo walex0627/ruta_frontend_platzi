@@ -1,11 +1,10 @@
 import '../styles/CreateTodoButton.css'
 
-function CreateTodoButton(){
+function CreateTodoButton({setOpenModal}){
   return (
-    <button className="createTodoButton" onClick={(event)=>{console.log('le diste click')
-      console.log(event)
-      console.log(event.target)
-    }}>Crear Tarea</button>
+    <button className="createTodoButton" 
+      onClick = {()=> setOpenModal(state => !state)}>
+      Crear Tarea</button>
   )
 }
 export { CreateTodoButton };

@@ -49,10 +49,10 @@ function TodoUI(){
 
                 ))}
             </TodoList>
-            <CreateTodoButton />
+            <CreateTodoButton setOpenModal={setOpenModal}/>
             {openModal && (
                 <Modal>
-                    {/* <TodoForm /> */}
+                    hola desde el modal
                 </Modal>
             )}
         </>
