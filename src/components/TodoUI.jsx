@@ -8,6 +8,7 @@ import { TodoLoading } from './TodoLoading';
 import { TodoError } from './TodoError';
 import { EmptyTodo } from './TodoEmpty';
 import { Modal } from './Modal';
+import { TodoForm } from './TodoForm';
 import { TodoContext } from '../context/TodoContext';
 
 function TodoUI(){
@@ -52,7 +53,7 @@ function TodoUI(){
             <CreateTodoButton setOpenModal={setOpenModal}/>
             {openModal && (
                 <Modal>
-                    hola desde el modal
+                    <TodoForm/>
                 </Modal>
             )}
         </>
