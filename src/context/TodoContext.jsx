@@ -4,14 +4,14 @@ const TodoContext = React.createContext()
 
 function TodoProvider({ children }) {
     const msgCongratulations = 'Felicitaciones completaste todas las tareas'
-    const [searchValue, setSearchValue] = React.useState('');
-    const [openModal, setOpenModal] = React.useState(false);
-
     const {
         item: todos,
         saveItem: saveTodos,
         loading,
         error } = useLocalStorage('Todos_v1', []);
+    const [searchValue, setSearchValue] = React.useState('');
+    const [openModal, setOpenModal] = React.useState(false);
+
     const completedTodos = todos.filter(todos => !!todos.completed === true).length
     const totalTodos = todos.length
 
