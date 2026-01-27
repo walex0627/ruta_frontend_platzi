@@ -6,5 +6,8 @@
     box-shadow: 0px 5px 50px rgba(32, 35, 41, 0,15);
     border-radius: 10px;
     padding: 12px;
-}
-
+    gap: 10px;
+    height: 68 px;
+    width: 100%;
+    flex-direction: column;
+} 

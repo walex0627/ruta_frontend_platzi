@@ -6,7 +6,8 @@ function TodoLoading() {
   return (
     <div className='LoadingTodo-container'>
         <Skeleton variant="rectangular" width={210} height={60} />
-        <Skeleton variant="rounded" width={210} height={60} />
+        <Skeleton variant="rectangular" width={210} height={60} />
+        <Skeleton variant="rectangular" width={210} height={60} />
     </div>
   )
 }

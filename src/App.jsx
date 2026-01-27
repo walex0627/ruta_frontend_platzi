@@ -41,8 +41,27 @@ function App() {
         <TodoCount totalTodos={totalTodos} completedTodos={completedTodos} msgCongratulations={msgCongratulations} />
         <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       </TodoHeader>
-      <TodoList>
-        {loading &&
+      
+      <TodoList
+      error={error}
+      loading={loading}
+      searchedTodos={searchedTodos}
+
+      onError={()=> <TodoError/>}
+      onLoading={()=> <TodoLoading/>}
+      onEmpty={()=> <EmptyTodo/>}
+      render={todo => 
+        <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)} />
+      }
+      />
+      
+      {/* <TodoList> */}
+        {/* {loading &&
           (
             <>
               <TodoLoading />
@@ -62,8 +81,8 @@ function App() {
             onComplete={() => completeTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)} />
 
-        ))}
-      </TodoList>
+        ))} */}
+      {/* </TodoList> */}
       <CreateTodoButton setOpenModal={setOpenModal} />
       {openModal && (
         <Modal>
