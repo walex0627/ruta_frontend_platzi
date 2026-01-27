@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/TodoCount.css'
-import { TodoContext } from '../context/TodoContext';
 
 function TodoCount({ totalTodos, completedTodos, msgCongratulations }) {
 

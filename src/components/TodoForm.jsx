@@ -1,17 +1,12 @@
 import React from 'react';
-import { TodoContext } from '../context/TodoContext';
+import { useTodos } from '../context/useTodos';
 import { Box, TextField, Button, Paper, Stack } from '@mui/material';
-function TodoForm() {
+function TodoForm({ addTodo, setOpenModal}) {
     
     const [newValue, setNewValue] = React.useState('');
     const onChange = (event) =>{
         setNewValue(event.target.value)
     } 
-    
-    const {
-        addTodo,
-        setOpenModal
-    } = React.useContext(TodoContext)
 
     const onSubmit = (event) => {
         event.preventDefault();

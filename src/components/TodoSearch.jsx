@@ -1,6 +1,6 @@
 import '../styles/TodoSearch.css'
 import React from 'react';
-import { TodoContext } from '../context/TodoContext';
+
 
 function TodoSearch({searchValue, setSearchValue}) {
   return (

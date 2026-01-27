@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage.hook';
-const TodoContext = React.createContext()
 
-function TodoProvider({ children }) {
+
+function useTodos() {
     const msgCongratulations = 'Felicitaciones completaste todas las tareas'
     const {
         item: todos,
@@ -58,8 +58,7 @@ function TodoProvider({ children }) {
         saveTodos(newTodos)
     }
     return (
-
-        <TodoContext.Provider value={{
+        {
             completedTodos,
             totalTodos,
             searchValue,
@@ -73,12 +72,10 @@ function TodoProvider({ children }) {
             openModal,
             setOpenModal,
             addTodo
-        }}>
-            {children}
-        </TodoContext.Provider>
+        }
     )
 }
 
 
 
-export { TodoContext, TodoProvider }
+export { useTodos }
