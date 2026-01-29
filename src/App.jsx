@@ -37,9 +37,15 @@ function App() {
 
   return (
     <>
-      <TodoHeader>
-        <TodoCount totalTodos={totalTodos} completedTodos={completedTodos} msgCongratulations={msgCongratulations} />
-        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      <TodoHeader loading={loading}>
+        <TodoCount totalTodos={totalTodos} 
+        completedTodos={completedTodos} 
+        msgCongratulations={msgCongratulations} 
+        />
+        <TodoSearch 
+        searchValue={searchValue} 
+        setSearchValue={setSearchValue}
+        />
       </TodoHeader>
 
       <TodoList
