@@ -41,27 +41,39 @@ function App() {
         <TodoCount totalTodos={totalTodos} completedTodos={completedTodos} msgCongratulations={msgCongratulations} />
         <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       </TodoHeader>
-      
-      <TodoList
-      error={error}
-      loading={loading}
-      searchedTodos={searchedTodos}
 
-      onError={()=> <TodoError/>}
-      onLoading={()=> <TodoLoading/>}
-      onEmpty={()=> <EmptyTodo/>}
-      render={todo => 
-        <TodoItem
+      <TodoList
+        error={error}
+        loading={loading}
+        searchedTodos={searchedTodos}
+        totalTodos={totalTodos}
+        searchText={searchValue}
+
+        onError={() => <TodoError />}
+        onLoading={() => <TodoLoading />}
+        onEmpty={() => <EmptyTodo />}
+        onEmptySearchResults={(searchText) => <p>No hay resultados para {searchText}</p>}
+        render={todo => (
+
+          <TodoItem
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
             onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)} />
-      }
-      />
-      
-      {/* <TodoList> */}
-        {/* {loading &&
+            onDelete={() => deleteTodo(todo.text)} />)}
+      >
+        {/* Renderizacion sin depender de renderProps*/}
+        {/* {todo => (
+          <TodoItem
+          key={todo.text}
+          text={todo.text}
+          completed={todo.completed}
+            onComplete={()=> completeTodo(todo.text)}
+            onDelete={()=> deleteTodo(todo.text)}/>
+        )} */}
+      </TodoList >
+    {/* <TodoList> */ }
+  {/* {loading &&
           (
             <>
               <TodoLoading />
@@ -82,15 +94,17 @@ function App() {
             onDelete={() => deleteTodo(todo.text)} />
 
         ))} */}
-      {/* </TodoList> */}
-      <CreateTodoButton setOpenModal={setOpenModal} />
-      {openModal && (
-        <Modal>
-          <TodoForm 
-            addTodo={addTodo}
-            setOpenModal={setOpenModal}/>
-        </Modal>
-      )}
+  {/* </TodoList> */ }
+  <CreateTodoButton setOpenModal={setOpenModal} />
+  {
+    openModal && (
+      <Modal>
+        <TodoForm
+          addTodo={addTodo}
+          setOpenModal={setOpenModal} />
+      </Modal>
+    )
+  }
     </>
   );
 }
