@@ -11,7 +11,7 @@ import { useTodos } from './context/useTodos';
 import { TodoHeader } from './components/TodoHeader';
 import { TodoCount } from './components/TodoCount';
 import { TodoSearch } from './components/TodoSearch';
-
+import { ChangeAlertWithStorageListener } from './components/ChangeAlert';
 
 const msgCongratulations = 'Felicitaciones completaste todas las tareas'
 
@@ -111,6 +111,7 @@ function App() {
       </Modal>
     )
   }
+  <ChangeAlertWithStorageListener />
     </>
   );
 }
